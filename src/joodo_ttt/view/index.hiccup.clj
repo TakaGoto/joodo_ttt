@@ -1,15 +1,15 @@
 [:form {:action "/" :method "POST"}
  [:small "player one"]
  [:select {:name "p-one" :size "1"}
-  [:option {:value "human"} "human"]
-  [:option {:value "computer"} "computer"]]
+  [:option {:value "h"} "human"]
+  [:option {:value "c"} "computer"]]
 
  [:br]
 
  [:small "player two"]
  [:select {:name "p-two" :size "1"}
-  [:option {:value "human"} "human"]
-  [:option {:value "computer"} "computer"]]
+  [:option {:value "h"} "human"]
+  [:option {:value "c"} "computer"]]
 
  [:br]
 
