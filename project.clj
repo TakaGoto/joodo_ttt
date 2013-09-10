@@ -6,14 +6,8 @@
   :joodo-core-namespace joodo-ttt.core
 
   ; leiningen 2
-  :profiles {:dev {:dependencies [[speclj "2.2.0"]]}}
+  :profiles {:dev {:dependencies [[speclj "2.5.0"]]}}
   :test-paths ["spec/"]
   :java-source-paths ["src/"]
-  :plugins [[speclj "2.2.0"]]
-
-  ; leiningen 1
-  :dev-dependencies [[speclj "2.2.0"]]
-  :test-path "spec/"
-  :java-source-path "src/"
-
+  :plugins [[speclj "2.5.0"]]
   )
