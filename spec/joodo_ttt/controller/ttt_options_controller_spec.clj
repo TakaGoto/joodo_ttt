@@ -20,7 +20,8 @@
 
   (context "POST '/'"
     (it "redirects to GET '/game'"
-      (should-redirect-to (do-post "/") "/game"))
+      (should-redirect-to
+        (do-post "/" :params {:p-one "h" :p-two "c" :board-size "3"}) "/game"))
 
     (it "stores data into cookies"
       (let [result (do-post "/" :params {:p-one "h" :p-two "c" :board-size "3"})]
@@ -32,5 +33,5 @@
           (:value (:p-two (:cookies result))))
         (should= "3"
           (:value (:board-size (:cookies result))))
-        (should= "_________"
+        (should= "123456789"
           (:value (:board (:cookies result))))))))

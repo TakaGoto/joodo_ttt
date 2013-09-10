@@ -10,7 +10,7 @@
 (defn- append-slot [index board html-board]
   (let [slot (find-slot board index)]
     (str html-board
-         "<form action='/player_move' method='post' style='float:left;'>"
+         "<form action='/game' method='post' style='float:left;'>"
          "<div style='width: 50px; length: 50px;'>"
          (format "<input type='submit' value=%s name='player_move'>" slot)
          "</div>"
