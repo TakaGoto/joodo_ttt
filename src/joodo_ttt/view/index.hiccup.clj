@@ -1,18 +1,24 @@
-[:div {:style "text-align: center;"}
- [:img {:src "/images/joodo.png"}]
- [:h1 "Welcomes You!"]]
+[:form {:action "/" :method "POST"}
+ [:small "player one"]
+ [:select {:name "p-one" :size "1"}
+  [:option {:value "human"} "human"]
+  [:option {:value "computer"} "computer"]]
 
-[:h3 "Intro"]
-[:p "Joodo is a clojure framework for building web applications. The project home is at "
- [:a {:href "https://github.com/slagyr/joodo"} "https://github.com/slagyr/joodo"] "."
- "It consists of 3 parts"
- [:ul
-  [:li [:b "Kuzushi"] "- which means 'breaking balance', is a Leiningen plugin that supplies all the Geashi commands."]
-  [:li [:b "Tsukuri"] "- which means 'entry', is a library containing all the development tools."]
-  [:li [:b "Kake"] "- which means 'execution', is the runtime library that contains all the main APIs."]]]
+ [:br]
 
-[:h3 "License"]
-[:p "Copyright (C) 2011-2012 Micah Martin All Rights Reserved."]
-[:p "Distributed under the The MIT License."]
+ [:small "player two"]
+ [:select {:name "p-two" :size "1"}
+  [:option {:value "human"} "human"]
+  [:option {:value "computer"} "computer"]]
 
-[:p "This app was generated for joodo-ttt."]
+ [:br]
+
+ [:small "board size"]
+ [:select {:name "board-size" :size "1"}
+  [:option {:value "3"} "3"]
+  [:option {:value "4"} "4"]]
+
+ [:br]
+
+ [:div
+  [:input {:id "start_game" :type "submit" :value "Start Game"}]]]
