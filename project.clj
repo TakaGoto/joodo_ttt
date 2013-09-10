@@ -1,7 +1,8 @@
 (defproject joodo-ttt "0.0.1"
   :description "A website deployable to AppEngine"
-  :dependencies [[org.clojure/clojure "1.4.0"]
-                 [joodo "0.10.0"]]
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [joodo "0.10.0"]
+                 [ttt_clojure "0.0.0"]]
 
   :joodo-core-namespace joodo-ttt.core
 
