@@ -7,9 +7,9 @@
 
 (defn- create-ttt-board [board-size]
   (let [size (Integer. board-size)]
-  (if (not (nil? board-size))
-    (clojure.string/join
-      (map #(str %) (range 1 (inc (* size size))))))))
+  (clojure.string/join ""
+    (take (* size size)
+      (repeat "_")))))
 
 (defn- store-data-in-cookies [params]
   (assoc

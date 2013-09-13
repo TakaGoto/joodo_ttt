@@ -1,6 +1,6 @@
 (ns joodo-ttt.core
   (:use
-    [compojure.core :only (defroutes context GET)]
+    [compojure.core :only (defroutes context GET POST)]
     [compojure.route :only (not-found)]
     [joodo.middleware.view-context :only (wrap-view-context)]
     [joodo.middleware.keyword-cookies :only (wrap-keyword-cookies)]
@@ -12,6 +12,7 @@
 
 (defroutes joodo-ttt-routes
   (GET "/game" [] game-controller)
+  (POST "/game" [] game-controller)
   (context "/" [] ttt-options-controller)
   (controller-router 'joodo-ttt.controller)
   (not-found (render-template "not_found" :template-root "joodo_ttt/view" :ns `joodo-ttt.view.view-helpers)))

@@ -33,5 +33,5 @@
           (:value (:p-two (:cookies result))))
         (should= "3"
           (:value (:board-size (:cookies result))))
-        (should= "123456789"
+        (should= "_________"
           (:value (:board (:cookies result))))))))

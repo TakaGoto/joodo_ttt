@@ -5,7 +5,8 @@
                                                    do-post do-get should-redirect-to
                                                    request rendered-template
                                                    rendered-context]]
-            [joodo_ttt.controller.game-controller :refer :all]))
+            [joodo_ttt.controller.game-controller :refer :all]
+            [joodo.middleware.request :refer [*request*]]))
 
 (describe "game-controller"
   (with-mock-rendering)
@@ -13,17 +14,40 @@
 
   (context "GET '/game'"
     (it "stores user's ttt options in cookies"
-      (let [result (do-get "/game")]
-        (should= 200 (:status result))))))
+      (let [result (do-get "/game" :cookies {:p-one {:value "h"}
+                                                      :p-two {:value "c"}
+                                                      :board-size {:value "3"}
+                                                      :board {:value "_________"}})]
+      (should= 200 (:status result)))))
 
+  (context "POST '/game'"
+    (it "makes a move"
+      (let [result (do-post "/game" :cookies {:p-one {:value "h"}
+                                              :p-two {:value "c"}
+                                              :board-size {:value "3"}
+                                              :board {:value "_________"}}
+                                    :params {:player-move "5"})]
+        (should= "____X____"
+          (:value (:board (:cookies result))))))
 
-;    (it "redirects if there is no cookies"
-;      (should-redirect-to
-;        (do-get "/game") "/"))))
+    (it "keeps the cookies recorded"
+      (let [result (do-post "/game" :cookies {:p-one {:value "h"}
+                                              :p-two {:value "c"}
+                                              :board-size {:value "3"}
+                                              :board {:value "_________"}}
+                                    :params {:player-move "5"})]
+        (should= "h"
+          (:value (:p-one (:cookies result))))
+        (should= "c"
+          (:value (:p-two (:cookies result))))
+        (should= "3"
+          (:value (:board-size result)))))
 
-;    (it "gets a 200 if there appropriate cookies are present"
-;      (with-redefs [*request* {:cookies {:p-one "h"}}]
-;        (let [result (do-get "/game")]
-;          (should= 200
-;            (:status result)))))))
-
+    (it "makes a computer move"
+      (let [result (do-post "/game" :cookies {:p-one {:value "c"}
+                                              :p-two {:value "h"}
+                                              :board-size {:value "3"}
+                                              :board {:value "OO_XXO___"}})]
+        (it "returns a different board"
+          (should= "OOX______"
+            (:value (:board (:cookies result)))))))))

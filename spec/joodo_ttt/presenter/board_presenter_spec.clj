@@ -3,11 +3,11 @@
             [joodo_ttt.presenter.board-presenter :refer :all]))
 
 (describe "board presenter"
-  (let [html-board (generate-board "123456789")]
+  (let [html-board (generate-board "_________")]
   (it "displays the board in html"
     (should-contain "form"
       html-board)
-    (should-contain "player_move"
+    (should-contain "player-move"
       html-board)
     (should-contain "post"
       html-board)
