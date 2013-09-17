@@ -11,10 +11,10 @@
 
   (it "tells the user the game is over"
     (display-end-game (ui-joodo) "tie")
-    (should= "game over!"
+    (should= "game over!  play again? <a href='/'> yes</a>"
       @message))
 
   (it "asks the user if they want to play again" do
     (ask-play-again (ui-joodo))
-    (should= "play again?"
+    (should= "play again? <a href='/'> yes</a>"
       @message)))

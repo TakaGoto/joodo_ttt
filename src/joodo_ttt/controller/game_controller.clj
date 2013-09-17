@@ -25,12 +25,11 @@
         player-move))
 
 (defn redirect-and-make-move [player-move]
-  (assoc
-    (redirect "/game")
-      :cookies {:p-one {:value (get-cookie :p-one) :path "/game"}
+  (-> (redirect "/game")
+      (assoc :cookies {:p-one {:value (get-cookie :p-one) :path "/game"}
                 :p-two {:value (get-cookie :p-two) :path "/game"}
                 :board {:value (join-slots (play-game player-move)) :path "/game"}}
-                :board-size {:value (get-cookie :board-size) :path "/game"}))
+                :board-size {:value (get-cookie :board-size) :path "/game"})))
 
 (defn- render-board [board]
   {:status 200

@@ -43,11 +43,11 @@
         (should= "3"
           (:value (:board-size result)))))
 
-    (it "makes a computer move"
-      (let [result (do-post "/game" :cookies {:p-one {:value "c"}
+    (context "makes a computer move"
+      (it "returns a different board"
+        (let [result (do-post "/game" :cookies {:p-one {:value "c"}
                                               :p-two {:value "h"}
                                               :board-size {:value "3"}
-                                              :board {:value "OO_XXO___"}})]
-        (it "returns a different board"
-          (should= "OOX______"
+                                              :board {:value "OO_X__X__"}})]
+          (should= "OOXX__X__"
             (:value (:board (:cookies result)))))))))

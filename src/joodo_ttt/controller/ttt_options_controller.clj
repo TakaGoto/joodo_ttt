@@ -12,12 +12,11 @@
       (repeat "_")))))
 
 (defn- store-data-in-cookies [params]
-  (assoc
-    (redirect "/game")
-      :cookies {:p-one {:value (:p-one params) :path "/game"}
+  (-> (redirect "/game")
+      (assoc :cookies {:p-one {:value (:p-one params) :path "/game"}
                 :p-two {:value (:p-two params) :path "/game"}
                 :board-size {:value (:board-size params) :path "/game"}
-                :board {:value (create-ttt-board (:board-size params))  :path "/game"}}))
+                :board {:value (create-ttt-board (:board-size params))  :path "/game"}})))
 
 (defroutes ttt-options-controller
   (GET "/" [] (render-template "index"))
