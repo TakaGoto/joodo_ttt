@@ -41,7 +41,7 @@
         (should= "c"
           (:value (:p-two (:cookies result))))
         (should= "3"
-          (:value (:board-size result)))))
+          (:value (:board-size (:cookies result))))))
 
     (context "makes a computer move"
       (it "returns a different board"

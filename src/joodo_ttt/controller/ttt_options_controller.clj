@@ -3,22 +3,15 @@
             [joodo.views :refer [render-template]]
             [ring.util.response :refer [redirect]]
             [joodo.middleware.request :refer [*request*]]
-            [ttt.board :refer [create-board]]))
-
-(defn- create-ttt-board [board-size]
-  (let [size (Integer. board-size)]
-  (clojure.string/join ""
-    (take (* size size)
-      (repeat "_")))))
+            [ttt.board :refer [create-board]]
+            [joodo_ttt.util.cookie-monster :refer [store-params-to-cookies]]
+            [joodo_ttt.util.util :refer [create-ttt-board]]))
 
 (defn- store-data-in-cookies [params]
   (-> (redirect "/game")
-      (assoc :cookies {:p-one {:value (:p-one params) :path "/game"}
-                :p-two {:value (:p-two params) :path "/game"}
-                :board-size {:value (:board-size params) :path "/game"}
-                :board {:value (create-ttt-board (:board-size params))  :path "/game"}})))
+      (assoc :cookies (store-params-to-cookies params))))
 
 (defroutes ttt-options-controller
   (GET "/" [] (render-template "index"))
-  (POST "/" {:as request}
-    (store-data-in-cookies (:params request))))
+  (POST "/" []
+    (store-data-in-cookies (:params *request*))))
