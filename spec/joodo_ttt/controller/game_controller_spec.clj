@@ -5,6 +5,8 @@
                                                    do-post do-get should-redirect-to
                                                    request rendered-template
                                                    rendered-context]]
+            [joodo_ttt.ui.joodo-ui :refer [message ui-joodo]]
+            [ttt.game :refer [play]]
             [joodo_ttt.controller.game-controller :refer :all]
             [joodo.middleware.request :refer [*request*]]))
 
@@ -48,6 +50,24 @@
         (let [result (do-post "/game" :cookies {:p-one {:value "c"}
                                               :p-two {:value "h"}
                                               :board-size {:value "3"}
-                                              :board {:value "OO_X__X__"}})]
-          (should= "OOXX__X__"
-            (:value (:board (:cookies result)))))))))
+                                              :board {:value "OX_OX____"}})]
+          (should= "OX_OX__X_"
+            (:value (:board (:cookies result)))))))
+
+    (it "should return a game over prompt when game is over"
+      (let [result (do-get "/game" :cookies {:p-one {:value "h"}
+                                             :p-two {:value "c"}
+                                             :board-size {:value "3"}
+                                             :board {:value "OO__X_XX_"}})]
+        (should= "OOO_X_XX_"
+          (:value (:board (:cookies result))))
+        (should= "game over!  play again? <a href='/'> yes</a>"
+          @message)))
+
+    (it "should give me a end game prompt when computer wins"
+      (play ui-joodo
+            {:p-one "h" :p-two "c"
+             :board ["O" "O" "_" "_" "X" "_" "X" "X" "_"]
+             :board-size "3"})
+      (should= "game over!  play again? <a href='/'> yes</a>"
+        @message))))

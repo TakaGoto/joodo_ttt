@@ -1,7 +1,6 @@
 (ns joodo_ttt.ui.joodo-ui
   (:require [ttt.ui.ui-protocol :refer :all]
-            [joodo.middleware.request :refer [*request*]]
-            [joodo.env :refer [*env*]]))
+            [joodo.middleware.request :refer [*request*]]))
 
 (def message (atom ""))
 
