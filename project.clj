@@ -2,7 +2,7 @@
   :description "A website deployable to AppEngine"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [joodo "0.10.0"]
-                 [ttt_clojure "1.2.1-SNAPSHOT"]]
+                 [ttt_clojure "1.2.3-SNAPSHOT"]]
 
   :joodo-core-namespace joodo-ttt.core
 
