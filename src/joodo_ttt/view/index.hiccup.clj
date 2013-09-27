@@ -1,5 +1,4 @@
 [:form {:action "/" :method "POST"}
- [:p1 "hello skim!"]
  [:small "player one"]
  [:select {:name "p-one" :size "1"}
   [:option {:value "h"} "human"]
