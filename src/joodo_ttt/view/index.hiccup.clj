@@ -1,3 +1,4 @@
+[:h1 "hello skim, this is joodo!"]
 [:form {:action "/" :method "POST"}
  [:small "player one"]
  [:select {:name "p-one" :size "1"}
